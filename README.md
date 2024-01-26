@@ -1,2 +1,2 @@
 # library_app
- UI for a book loaning app
+ Flutter app for loaning books (UI only)
