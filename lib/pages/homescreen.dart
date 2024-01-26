@@ -4,9 +4,11 @@ import 'package:library_app/components/bookstore.dart';
 import 'package:library_app/pages/profile.dart';
 import 'package:library_app/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Homescreen extends StatefulWidget {
   final String username;
+
   Homescreen({required this.username});
 
   @override
@@ -69,7 +71,7 @@ class _Homescreen extends State<Homescreen> {
                   ),
                   ListTile(
                     leading: Icon(Icons.home),
-                    title: Text('Home'),
+                    title: Text(AppLocalizations.of(context)!.home),
                     onTap: () {
                       // Navigate to home page or perform desired action
                       selectOption("bookstore");
@@ -78,7 +80,7 @@ class _Homescreen extends State<Homescreen> {
                   ),
                   ListTile(
                     leading: Icon(Icons.account_circle),
-                    title: Text('Profile'),
+                    title: Text(AppLocalizations.of(context)!.profile),
                     onTap: () {
                       // Navigate to profile page or perform desired action
                       selectOption("profile");
@@ -88,7 +90,7 @@ class _Homescreen extends State<Homescreen> {
                   Divider(),
                   ListTile(
                     leading: Icon(Icons.dark_mode),
-                    title: Text('Dark Mode'),
+                    title: Text(AppLocalizations.of(context)!.darkMode),
                     onTap: () {
                       Provider.of<ThemeProvider>(context, listen: false)
                           .toggleTheme();
@@ -98,7 +100,7 @@ class _Homescreen extends State<Homescreen> {
                   ),
                   ListTile(
                     leading: Icon(Icons.exit_to_app),
-                    title: Text('Logout'),
+                    title: Text(AppLocalizations.of(context)!.logout),
                     onTap: () {
                       // Perform logout action
 
@@ -112,6 +114,7 @@ class _Homescreen extends State<Homescreen> {
             body: screen == "bookstore"
                 ? Bookstore()
                 : ProfilePage(
-                    userName: widget.username, languagePreference: "English")));
+                    userName: widget.username,
+                  )));
   }
 }

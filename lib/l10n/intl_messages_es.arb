@@ -1,0 +1,12 @@
+{
+  "@@locale": "es",
+  "appTitle": "Mi Aplicación",
+  "helloworld": "Hola Mundo",
+  "welcomeMessage": "Bienvenido a Mi Aplicación",
+  "language": "Idioma",
+  "name": "Nombre",
+  "profile": "Perfil",
+  "home": "Hogar",
+  "darkMode": "Modo oscuro",
+  "logout": "Cerrar sesión"
+}

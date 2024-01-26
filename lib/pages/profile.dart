@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:library_app/providers/locale_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   final String userName;
-  final String languagePreference;
 
-  ProfilePage({required this.userName, required this.languagePreference});
+  ProfilePage({
+    required this.userName,
+  });
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String _selectedLanguage = '';
-
-  @override
-  void initState() {
-    super.initState();
-    // Set the initially selected language to the user's current language preference
-    _selectedLanguage = widget.languagePreference;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text(AppLocalizations.of(context)!.profile),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'User Name:',
+              AppLocalizations.of(context)!.name,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
@@ -42,47 +37,42 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SizedBox(height: 16),
             Text(
-              'Language Preference:',
+              AppLocalizations.of(context)!.language,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
-                  child: DropdownButton<String>(
-                    value: _selectedLanguage,
-                    items: ['English', 'Spanish'].map((String language) {
-                      return DropdownMenuItem<String>(
-                        value: language,
-                        child: Text(language),
+                  child: Consumer<LocaleProvider>(
+                    builder: (context, localeProvider, _) {
+                      return DropdownButton<Locale>(
+                        value: localeProvider.selectedLocale,
+                        items: [
+                          DropdownMenuItem(
+                            value: Locale('en'),
+                            child: Text('English'),
+                          ),
+                          DropdownMenuItem(
+                            value: Locale('es'),
+                            child: Text('Español'),
+                          ),
+                          // Add other languages as needed
+                        ],
+                        onChanged: (newLocale) {
+                          localeProvider.setLocale(newLocale!);
+                          print(newLocale);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Language updated"),
+                            ),
+                          );
+                        },
                       );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedLanguage = newValue!;
-                      });
                     },
                   ),
                 ),
                 SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    // Save the updated language preference
-                    // We can add logic to persist this information
-                    // For now, just updating the UI
-                    // setState(() {
-                    //   widget.languagePreference = _selectedLanguage;
-                    // });
-                    // Show a confirmation snackbar
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                            'Language preference updated to $_selectedLanguage'),
-                      ),
-                    );
-                  },
-                  child: Text('Save'),
-                ),
               ],
             ),
           ],

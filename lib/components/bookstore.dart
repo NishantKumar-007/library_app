@@ -36,10 +36,20 @@ class _BookstoreState extends State<Bookstore> {
   @override
   void initState() {
     super.initState();
+
     // Initialize filteredBooks with all books initially
     filteredBooks = books;
     // print(widget.username);
   }
+
+  // void _sort() {
+  //   setState(() {
+  //     filteredBooks.sort((a, b) {
+  //       return a.title.compareTo(b.title);
+  //     });
+  //   });
+  //   print(filteredBooks.map((e) => print(e.title)));
+  // }
 
   // Function to filter books based on title or author
   void _filterBooks(String searchText) {
@@ -55,6 +65,7 @@ class _BookstoreState extends State<Bookstore> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
+      // CustomButton(logic: _sort, buttonText: "Sort"),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextField(

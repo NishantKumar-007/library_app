@@ -3,7 +3,7 @@ import 'package:library_app/components/button.dart';
 import 'package:library_app/components/textfield.dart';
 
 import 'package:library_app/pages/homescreen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -68,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
+
                   MyTextField(
                     controller: usernameController,
                     hintText: "Email",

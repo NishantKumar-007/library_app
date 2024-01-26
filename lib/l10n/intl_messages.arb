@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "appTitle": "My App",
+  "helloworld": "Hello!",
+  "welcomeMessage": "Welcome to My App",
+  "language": "Language",
+  "name": "Name",
+  "profile": "Profile",
+  "home": "Home",
+  "darkMode": "Dark Mode",
+  "logout": "Logout"
+}

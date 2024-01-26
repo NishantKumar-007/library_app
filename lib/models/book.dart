@@ -14,4 +14,6 @@ class Book {
         author = map['author'],
         isAvailable = map['isAvailable'],
         bookPath = map['bookPath'];
+
+  void compareTo(Book b) {}
 }
